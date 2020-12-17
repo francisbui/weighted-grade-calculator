@@ -14,37 +14,45 @@ except ImportError:
 
 try:
     import ttk
+
     py3 = False
 except ImportError:
     import tkinter.ttk as ttk
+
     py3 = True
 
 import weightcalc_support
+
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, w, root
     root = tk.Tk()
-    top = Toplevel1 (root)
+    top = Toplevel1(root)
     weightcalc_support.init(root, top)
     root.mainloop()
 
+
 w = None
+
+
 def create_Toplevel1(rt, *args, **kwargs):
     '''Starting point when module is imported by another module.
        Correct form of call: 'create_Toplevel1(root, *args, **kwargs)' .'''
     global w, w_win, root
-    #rt = root
+    # rt = root
     root = rt
-    w = tk.Toplevel (root)
-    top = Toplevel1 (w)
+    w = tk.Toplevel(root)
+    top = Toplevel1(w)
     weightcalc_support.init(w, top, *args, **kwargs)
     return (w, top)
+
 
 def destroy_Toplevel1():
     global w
     w.destroy()
     w = None
+
 
 class Toplevel1:
     def __init__(self, top=None):
@@ -52,22 +60,22 @@ class Toplevel1:
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
-        _compcolor = '#d9d9d9' # X11 color: 'gray85'
-        _ana1color = '#d9d9d9' # X11 color: 'gray85'
-        _ana2color = '#ececec' # Closest X11 color: 'gray92'
+        _compcolor = '#d9d9d9'  # X11 color: 'gray85'
+        _ana1color = '#d9d9d9'  # X11 color: 'gray85'
+        _ana2color = '#ececec'  # Closest X11 color: 'gray92'
         self.style = ttk.Style()
         if sys.platform == "win32":
             self.style.theme_use('winnative')
-        self.style.configure('.',background=_bgcolor)
-        self.style.configure('.',foreground=_fgcolor)
-        self.style.configure('.',font="TkDefaultFont")
-        self.style.map('.',background=
-            [('selected', _compcolor), ('active',_ana2color)])
+        self.style.configure('.', background=_bgcolor)
+        self.style.configure('.', foreground=_fgcolor)
+        self.style.configure('.', font="TkDefaultFont")
+        self.style.map('.', background=
+        [('selected', _compcolor), ('active', _ana2color)])
 
         top.geometry("400x450+-1214+140")
         top.minsize(72, 15)
         top.maxsize(5280, 1052)
-        top.resizable(1,  1)
+        top.resizable(1, 1)
         top.title("Weight Grade Calculator")
         top.configure(background="#d9d9d9")
         top.configure(highlightbackground="#d9d9d9")
@@ -76,33 +84,33 @@ class Toplevel1:
         self.style.configure('TNotebook.Tab', background=_bgcolor)
         self.style.configure('TNotebook.Tab', foreground=_fgcolor)
         self.style.map('TNotebook.Tab', background=
-            [('selected', _compcolor), ('active',_ana2color)])
+        [('selected', _compcolor), ('active', _ana2color)])
         self.TNotebook1 = ttk.Notebook(top)
         self.TNotebook1.place(relx=0.0, rely=0.0, relheight=1.0, relwidth=1.0)
         self.TNotebook1.configure(takefocus="")
         self.TNotebook1_t1 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t1, padding=3)
         self.TNotebook1.tab(0, text="Percentage", compound="left", underline="-1"
-                ,)
+                            , )
         self.TNotebook1_t1.configure(background="#d9d9d9")
         self.TNotebook1_t1.configure(highlightbackground="#d9d9d9")
         self.TNotebook1_t1.configure(highlightcolor="black")
         self.TNotebook1_t2 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t2, padding=3)
-        self.TNotebook1.tab(1, text="Letter",compound="left",underline="-1",)
+        self.TNotebook1.tab(1, text="Letter", compound="left", underline="-1", )
         self.TNotebook1_t2.configure(background="#d9d9d9")
         self.TNotebook1_t2.configure(highlightbackground="#d9d9d9")
         self.TNotebook1_t2.configure(highlightcolor="black")
         self.TNotebook1_t3 = tk.Frame(self.TNotebook1)
         self.TNotebook1.add(self.TNotebook1_t3, padding=3)
-        self.TNotebook1.tab(2, text="Point",compound="none",underline="-1",)
+        self.TNotebook1.tab(2, text="Point", compound="none", underline="-1", )
         self.TNotebook1_t3.configure(background="#d9d9d9")
         self.TNotebook1_t3.configure(highlightbackground="#d9d9d9")
         self.TNotebook1_t3.configure(highlightcolor="black")
 
         self.Labelframe1 = tk.LabelFrame(self.TNotebook1_t1)
         self.Labelframe1.place(relx=0.595, rely=0.031, relheight=0.402
-                , relwidth=0.364)
+                               , relwidth=0.364)
         self.Labelframe1.configure(relief='groove')
         self.Labelframe1.configure(foreground="black")
         self.Labelframe1.configure(text='''Average Grade''')
@@ -112,7 +120,7 @@ class Toplevel1:
 
         self.Labelframe2 = tk.LabelFrame(self.TNotebook1_t1)
         self.Labelframe2.place(relx=0.595, rely=0.446, relheight=0.224
-                , relwidth=0.364)
+                               , relwidth=0.364)
         self.Labelframe2.configure(relief='groove')
         self.Labelframe2.configure(foreground="black")
         self.Labelframe2.configure(text='''Grade Percentage''')
@@ -344,10 +352,6 @@ class Toplevel1:
         self.Button5.configure(highlightcolor="black")
         self.Button5.configure(text='''Add Row''')
 
+
 if __name__ == '__main__':
     vp_start_gui()
-
-
-
-
-
